@@ -8,7 +8,11 @@ terraform {
   }
 }
 
-provider "vault" {}
+provider "vault" {
+  address            = "http://${var.vault_address}"
+  add_address_to_env = true
+  token              = var.vault_token
+}
 
 resource "vault_aws_secret_backend" "aws" {
   access_key = var.aws_access_key
